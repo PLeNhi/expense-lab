@@ -11,12 +11,14 @@ App ghi chi tiêu cá nhân. Vite + React + TypeScript, test bằng Vitest.
 ## Cấu trúc
 
 - `src/lib/` — logic thuần (tính toán, validate), KHÔNG import React
-- `src/components/` — UI, chỉ gọi hàm từ `src/lib/`, không chứa logic nghiệp vụ
+- `src/hooks/` — custom hook, nối `src/lib/` với state React (dùng `useState`/`useEffect`), không chứa UI
+- `src/components/` — UI thuần tái sử dụng được, chỉ gọi hàm từ `src/lib/`/`src/hooks/`, không chứa logic nghiệp vụ
+- `src/pages/` — component gắn với 1 route cụ thể, ghép `src/components/` + `src/hooks/` lại, không tự chứa logic nghiệp vụ
 - Test đặt cạnh file: `foo.ts` → `foo.test.ts`
 
 ## Quy ước
 
-- Tiền: số nguyên, đơn vị đồng. KHÔNG dùng float
+- Tiền: số số thập phân, đơn vị đồng
 - Đặt tên file theo quy ước
   - PascalCase: Dùng cho Component, Class, Interface, Type. Tên file component phải trùng khớp với tên component bên trong.
   - camelCase: Dùng cho Function, Hook, Variable, Utility/Helper file.
@@ -25,6 +27,9 @@ App ghi chi tiêu cá nhân. Vite + React + TypeScript, test bằng Vitest.
   - UPPERCASE: Dùng cho Constants (Hằng số) và biến môi trường.
   - Utility / Helper functions: Dùng kebab-case phản ánh đúng chức năng
   - Types / Interfaces: Dùng PascalCase kèm hậu tố hoặc nằm chung
+- Comment code:
+  - Thêm comment vào những func phức tạp để nói rõ nó giải quyết vấn đề gì hoặc những chỗ cần cần note, sửa lại trong tương lai, chờ confirm...
+  - Comment bắt buộc viết bằng tiếng anh
 - Lỗi:
   - Hàm trong `src/lib/` validate input, sai thì `throw new Error('<message tiếng Việt, cụ thể>')`
   - Component bắt lỗi và hiển thị message cho người dùng, không nuốt lỗi
@@ -41,6 +46,7 @@ App ghi chi tiêu cá nhân. Vite + React + TypeScript, test bằng Vitest.
 - Chỉ sửa file liên quan task; muốn sửa file khác thì hỏi trước
 - Không thêm thư viện khi chưa hỏi
 - Báo "xong" phải kèm output thật của test và typecheck
+- Khi làm task cần đọc và đảm bảo code theo những rule đã được định nghĩa trước, không lách. Nếu k thể code theo được cần đưa ra lý do.
 
 ## Gotchas
 
